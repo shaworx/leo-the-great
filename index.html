@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A smart board teaching on Pope St. Leo the Great for a Confirmation class.">
+<title>Leo the Great</title>
+<style>[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Alegreya+Sans:wght@400;500;700&family=Alegreya:ital,wght@1,500&display=swap">
+<style>
+/* Layout: a vertical website that snaps one full-screen section at a time; image and text split left/right, alternating sides. Light marble with porphyry and gold. */
+:root{
+  --marble:#ECE9E4;       /* page ground, cool stone */
+  --marble-2:#F8F6F2;     /* raised panels */
+  --ink:#2A1A22;          /* main text, porphyry-black */
+  --ink-dim:#65555B;      /* secondary text */
+  --porphyry:#6E2340;     /* accent: imperial purple-red */
+  --gold:#94701F;         /* deep gold, legible on light */
+  --rule:#CFC6BC;
+  --display:"Cinzel","Trajan Pro",Georgia,serif;
+  --body:"Alegreya Sans","Segoe UI",system-ui,sans-serif;
+  --quote:"Alegreya",Georgia,serif;
+  color-scheme:light;
+  scroll-snap-type:y mandatory;
+}
+@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}
+body{margin:0;background:var(--marble);color:var(--ink);font-family:var(--body)}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;text-wrap:balance;letter-spacing:.03em;line-height:1.08}
+p{margin:0}
+
+section{scroll-snap-align:start;min-height:100vh;min-height:100dvh;box-sizing:border-box;display:grid;align-items:center;
+  padding-block:clamp(28px,5vh,64px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  border-bottom:1px solid var(--rule)}
+section:nth-of-type(even){background:var(--marble-2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,96px);align-items:center;
+  width:100%;max-width:1680px;margin:0 auto;padding-left:clamp(0px,3vw,56px);padding-right:clamp(48px,6vw,110px);box-sizing:border-box}
+.split>*{min-width:0}
+section.flip .media{order:2}
+
+/* image placeholder */
+.media{height:min(76vh,720px);display:flex}
+.ph{flex:1;margin:0;border:2px dashed var(--rule);background:
+  repeating-linear-gradient(135deg,transparent 0 22px,rgba(110,35,64,.05) 22px 23px),var(--marble);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:clamp(20px,2.4vw,36px);position:relative}
+section:nth-of-type(even) .ph{background:repeating-linear-gradient(135deg,transparent 0 22px,rgba(110,35,64,.05) 22px 23px),var(--marble-2)}
+.ph::before{content:"Image";position:absolute;top:clamp(16px,2vw,28px);left:clamp(20px,2.4vw,36px);
+  font-family:var(--display);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--porphyry);
+  border:1px solid var(--porphyry);padding:5px 10px}
+.ph strong{font-family:var(--display);font-size:clamp(18px,1.6vw,26px);line-height:1.25;font-weight:700}
+.ph span{font-size:clamp(15px,1.1vw,19px);color:var(--ink-dim)}
+
+.pic{flex:1;margin:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;min-height:0;min-width:0}
+.pic img{flex:0 1 auto;min-height:0;width:100%;height:auto;max-height:calc(100% - 34px);object-fit:contain;display:block}
+.pic figcaption{font-size:clamp(13px,.95vw,17px);color:var(--ink-dim);text-align:center;line-height:1.3}
+.slot .slot-ph{display:none}
+.slot.empty img,.slot.empty figcaption{display:none}
+.slot.empty{align-items:stretch}
+.slot.empty .slot-ph{display:flex;flex:1}
+.home-link{font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;background:var(--marble-2);color:var(--ink);border:1px solid var(--rule);height:44px;padding:0 16px;display:inline-flex;align-items:center;text-decoration:none}
+.home-link:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+/* text side */
+.text{display:flex;flex-direction:column;gap:clamp(16px,2.6vh,30px)}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:clamp(14px,1.1vw,20px);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+h2{font-size:clamp(38px,4.6vw,84px)}
+.lead{font-size:clamp(20px,1.9vw,34px);line-height:1.4;max-width:30ch}
+ul.points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(12px,2vh,24px)}
+ul.points li{font-size:clamp(19px,1.75vw,32px);line-height:1.35;padding-left:1.3em;position:relative;max-width:34ch}
+ul.points li::before{content:"";position:absolute;left:0;top:.5em;width:.42em;height:.42em;background:var(--gold);transform:rotate(45deg)}
+b{color:var(--porphyry)}
+.callout{border-left:5px solid var(--gold);padding:4px 0 4px clamp(16px,1.6vw,28px);display:flex;flex-direction:column;gap:8px}
+.callout .label{font-family:var(--display);font-size:clamp(12px,.95vw,17px);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.callout p{font-size:clamp(18px,1.5vw,28px);line-height:1.4}
+blockquote{margin:0;font-family:var(--quote);font-style:italic;font-weight:500}
+.callout blockquote{font-size:clamp(24px,2.4vw,44px);line-height:1.2;color:var(--porphyry)}
+a.out{color:var(--porphyry);font-size:clamp(16px,1.2vw,22px);text-underline-offset:5px}
+a.out:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+
+/* hero */
+.hero h1{font-size:clamp(52px,7vw,132px);letter-spacing:.06em}
+.hero .sub{font-family:var(--display);font-size:clamp(16px,1.5vw,26px);letter-spacing:.12em;color:var(--ink-dim)}
+.hero .tag{font-family:var(--quote);font-style:italic;font-size:clamp(24px,2.5vw,44px);color:var(--porphyry)}
+.diamond-rule{width:min(320px,60%);height:1px;background:var(--rule);position:relative}
+.diamond-rule::after{content:"";position:absolute;left:0;top:50%;width:11px;height:11px;background:var(--gold);transform:translateY(-50%) rotate(45deg)}
+.scroll-cue{font-size:clamp(14px,1vw,17px);color:var(--ink-dim);letter-spacing:.08em}
+
+/* vertical timeline (takes the media side) */
+.tl{list-style:none;margin:0;padding:0 0 0 34px;border-left:2px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between;
+  height:min(76vh,720px);box-sizing:border-box}
+.tl li{position:relative;display:grid;grid-template-columns:clamp(110px,9vw,170px) 1fr;gap:16px;align-items:baseline}
+.tl li::before{content:"";position:absolute;left:-44px;top:.45em;width:16px;height:16px;transform:rotate(45deg);background:var(--marble-2);border:2px solid var(--gold)}
+.tl li.key::before{background:var(--porphyry);border-color:var(--porphyry)}
+.tl .yr{font-family:var(--display);font-weight:700;font-size:clamp(20px,1.9vw,34px);font-variant-numeric:tabular-nums}
+.tl .what{font-size:clamp(17px,1.45vw,26px);color:var(--ink-dim)}
+.tl li.key .yr{color:var(--porphyry)}
+.tl li.key .what{color:var(--ink);font-weight:500}
+
+/* legend vs history */
+.versus{display:flex;flex-direction:column;gap:clamp(14px,2.4vh,28px)}
+.case{background:var(--marble);border:1px solid var(--rule);padding:clamp(16px,1.8vw,28px);display:flex;flex-direction:column;gap:10px}
+section:nth-of-type(odd) .case{background:var(--marble-2)}
+.case h3{font-size:clamp(18px,1.6vw,28px)}
+.case .row{display:grid;grid-template-columns:clamp(80px,7vw,120px) 1fr;gap:12px;font-size:clamp(16px,1.3vw,23px);line-height:1.35}
+.case .row span:first-child{font-family:var(--display);font-size:clamp(11px,.85vw,15px);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding-top:.35em}
+.dim{color:var(--ink-dim)}
+
+/* quote */
+.big-quote{font-size:clamp(40px,5.4vw,100px);line-height:1.08;color:var(--porphyry);max-width:14ch}
+.full-quote{font-size:clamp(17px,1.4vw,25px);line-height:1.5;color:var(--ink-dim);max-width:46ch}
+
+/* legacy */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.6vh,30px) clamp(20px,2.4vw,40px)}
+.stat{border-top:2px solid var(--gold);padding-top:12px;display:flex;flex-direction:column;gap:4px}
+.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(30px,3vw,54px);line-height:1;font-variant-numeric:tabular-nums}
+.stat .t{font-size:clamp(15px,1.25vw,22px);line-height:1.3;color:var(--ink-dim)}
+
+/* close */
+.three{font-family:var(--display);font-weight:700;font-size:clamp(32px,3.6vw,64px);line-height:1.25;letter-spacing:.04em}
+.three span{display:block}
+.three .last{color:var(--porphyry)}
+.ask{font-family:var(--quote);font-style:italic;font-size:clamp(24px,2.3vw,42px);line-height:1.3;max-width:26ch}
+.pray{font-family:var(--display);font-size:clamp(14px,1.1vw,20px);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+
+/* side nav */
+.rail{position:fixed;right:max(10px,calc(env(safe-area-inset-right,0px) + 10px));top:50%;transform:translateY(-50%);z-index:5;
+  display:flex;flex-direction:column;gap:4px}
+.rail a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;color:var(--ink-dim);
+  font-family:var(--display);font-size:12px;letter-spacing:.14em;padding:5px 4px;min-height:22px}
+.rail a i{width:9px;height:9px;transform:rotate(45deg);border:1.5px solid var(--gold);display:block;flex:none}
+.rail a.on{color:var(--porphyry)}
+.rail a.on i{background:var(--porphyry);border-color:var(--porphyry)}
+.rail a span{opacity:0;transition:opacity .2s}
+.rail a.on span,.rail:hover a span{opacity:1}
+.rail a:focus-visible{outline:2px solid var(--gold)}
+
+.tools{position:fixed;left:max(14px,calc(env(safe-area-inset-left,0px) + 14px));bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:6;display:flex;gap:8px}
+.tools button{font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;background:var(--marble-2);color:var(--ink);
+  border:1px solid var(--rule);height:44px;padding:0 16px;cursor:pointer}
+.tools button[aria-pressed="true"]{background:var(--porphyry);color:var(--marble-2);border-color:var(--porphyry)}
+.tools button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.notes{position:fixed;left:max(14px,calc(env(safe-area-inset-left,0px) + 14px));bottom:calc(env(safe-area-inset-bottom,0px) + 70px);z-index:6;
+  width:min(560px,calc(100% - 28px));max-height:45vh;overflow:auto;background:var(--ink);color:var(--marble-2);padding:18px 22px;
+  font-size:17px;line-height:1.5;box-shadow:0 12px 40px rgba(42,26,34,.35)}
+.notes h4{margin:0 0 6px;font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#D9B866}
+.notes ul{margin:0;padding-left:18px}
+.notes li{margin:4px 0}
+section aside{display:none}
+
+@media (max-width:860px){
+  :root{scroll-snap-type:y proximity}
+  .split{grid-template-columns:1fr;padding-inline:0}
+  section.flip .media{order:0}
+  .media,.tl{height:auto}
+  .ph{min-height:220px}
+  .pic img{height:auto;max-height:60vh}
+  .tl{gap:18px}
+  .rail{display:none}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+
+</head>
+<body>
+<!-- I · HERO -->
+<section id="leo" class="hero" data-label="Leo">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/leo-icon.jpg" alt="Icon of St. Leo the Great holding a book of the Gospels"><figcaption>Icon of St. Leo the Great</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Pope · Saint · Doctor of the Church</div>
+      <h1>Leo the Great</h1>
+      <div class="diamond-rule"></div>
+      <p class="sub">Pope Leo I · c. 400 – 461 AD · Feast: Nov 10</p>
+      <p class="tag">No army. No weapon. No guarantee.</p>
+      <p class="scroll-cue">Scroll or press ↓ to begin</p>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Today we're meeting a pope who walked out to face the most feared warlord in the world, with nothing but his faith.</li>
+    <li>He's one of the very few popes the Church calls "the Great."</li>
+  </ul></aside>
+</section>
+
+<!-- II · HOOK -->
+<section id="name" class="flip" data-label="The name">
+  <div class="split">
+    <div class="media"><figure class="pic slot"><img src="img/leo-xiv.jpg" alt="Pope Leo XIV" onerror="this.closest('.slot').classList.add('empty')"><figcaption>Pope Leo XIV</figcaption><div class="ph slot-ph"><strong>Add a photo of Pope Leo XIV</strong><span>Save it as img/leo-xiv.jpg</span></div></figure></div>
+    <div class="text">
+      <div class="eyebrow">Why this name?</div>
+      <h2>Pope Leo</h2>
+      <p class="lead">In 2025, the new pope chose the name <b>Leo XIV</b>. The first Leo is the reason that name carries weight.</p>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Accuracy note: Leo XIV said he was mainly honoring Leo XIII (the pope of Catholic social teaching). Leo I is the first Leo and made the name great.</li>
+  </ul></aside>
+</section>
+
+<!-- III · WORLD -->
+<section id="world" data-label="His world">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/sack-410.jpg" alt="Visigoths pulling down a statue during the sack of Rome"><figcaption>Joseph-Noël Sylvestre, The Sack of Rome by the Visigoths, 1890</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">The world around 400 AD</div>
+      <h2>A world falling apart</h2>
+      <ul class="points">
+        <li><b>The Empire was crumbling.</b> Weak emperors, a stretched army, tribes breaking through the borders.</li>
+        <li><b>In 410, Rome was sacked</b> by the Visigoths, the first time in 800 years. Leo was a boy.</li>
+        <li><b>The Church was divided</b> over a basic question: who is Jesus?</li>
+      </ul>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Imagine growing up and hearing that the capital of the world had been robbed. Romans thought it could never happen.</li>
+    <li>Leo grows up knowing nothing is safe. That shapes the man.</li>
+    <li>Name: the first pope to take a new name was John II in 533, because his birth name, Mercurius, was the name of a pagan god. It didn't become the normal custom until around the year 1000.</li>
+    <li>An early record of the popes says his father was named Quintianus. That's nearly all we know about his family.</li>
+  </ul></aside>
+</section>
+
+<!-- IV · EARLY LIFE -->
+<section id="early-life" class="flip" data-label="Early life">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/invasions-map.jpg" alt="Map of barbarian invasion routes into the Roman Empire, 100 to 500 AD"><figcaption>Invasions of the Roman Empire, 100–500 AD · Wikimedia Commons, CC BY-SA</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Before he was pope</div>
+      <h2>The trusted one</h2>
+      <ul class="points">
+        <li>Born around 400, in Rome or Tuscany.</li>
+        <li>Became a <b>deacon</b>, the right-hand administrator for two popes.</li>
+        <li>Sent to Gaul (France) to <b>end a feud</b> between two Roman generals.</li>
+      </ul>
+      <div class="callout"><div class="label">440 AD</div>
+        <p>While he was still away in Gaul, the Church elected him pope. He found out from a messenger.</p></div>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Point: people trusted him with hard jobs before he had the title. Character comes first.</li>
+    <li>Map: trace the Huns (green) and Vandals (blue). Those are the two armies Leo will face.</li>
+    <li>The generals were Aetius and Albinus. Little is known about his family or childhood.</li>
+  </ul></aside>
+</section>
+
+<!-- V · TIMELINE -->
+<section id="timeline" data-label="Timeline">
+  <div class="split">
+    <ol class="tl" aria-label="Timeline of Leo's life">
+      <li><span class="yr">c. 400</span><span class="what">Born</span></li>
+      <li><span class="yr">410</span><span class="what">Visigoths sack Rome</span></li>
+      <li><span class="yr">440</span><span class="what">Elected pope</span></li>
+      <li class="key"><span class="yr">449–451</span><span class="what">Battle I: Who is Jesus?</span></li>
+      <li class="key"><span class="yr">452</span><span class="what">Battle II: Attila the Hun</span></li>
+      <li class="key"><span class="yr">455</span><span class="what">Battle III: The Vandals</span></li>
+      <li><span class="yr">461</span><span class="what">Dies, November 10</span></li>
+    </ol>
+    <div class="text">
+      <div class="eyebrow">21 years as pope</div>
+      <h2>Three battles</h2>
+      <p class="lead">In just six years, Leo faced three crises. One was about <b>truth</b>. Two were about <b>survival</b>.</p>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Three huge crises in six years. He didn't get to pick his battles.</li>
+  </ul></aside>
+</section>
+
+<!-- VI · BATTLE I -->
+<section id="who-is-jesus" class="flip" data-label="Battle I">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/council.jpg" alt="Fresco of bishops gathered around the emperor at the Fourth Ecumenical Council"><figcaption>Fresco of the Fourth Ecumenical Council, Chalcedon</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Battle I · 449 – 451 AD</div>
+      <h2>The Council of Chalcedon</h2>
+      <ul class="points">
+        <li>A monk named Eutyches taught that Jesus was only God, <b>not truly human</b>.</li>
+        <li>Leo wrote a letter, the Tome, explaining that <b>Jesus is fully God and fully man</b>.</li>
+        <li>In 449, a council at Ephesus <b>refused to read it</b>. Leo called it the "Robber Council."</li>
+        <li>In 451, a new emperor called the Council of Chalcedon. More than 500 bishops heard Leo's letter and shouted, <b>"Peter has spoken through Leo!"</b></li>
+      </ul>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Why it matters today: what we say about Jesus in the Creed every Sunday rests on what Leo wrote.</li>
+    <li>If Jesus isn't truly human, he didn't truly suffer, and he can't truly understand us.</li>
+    <li>A council = a meeting of bishops from across the Church to settle a major question. Their decisions bind the whole Church.</li>
+    <li>448: Flavian, bishop of Constantinople, condemned Eutyches. Eutyches had friends at the emperor's court and appealed.</li>
+    <li>449: Emperor Theodosius II called a council at Ephesus, run by Dioscorus of Alexandria, Eutyches' ally. He blocked Leo's letter, cleared Eutyches, and removed Flavian. Flavian was attacked and died of his injuries days later. Leo's deacon Hilarus shouted "Contradicitur!" ("I object!") and escaped back to Rome.</li>
+    <li>Leo called it a "latrocinium," a gathering of robbers.</li>
+    <li>450: Theodosius died in a riding accident. The new emperor, Marcian, and his wife Pulcheria supported Leo and called a new council.</li>
+    <li>451: Chalcedon, across the water from Constantinople (today part of Istanbul). Leo sent representatives. The Tome was read at the second session, and the council declared Christ has two natures "without confusion, change, division, or separation."</li>
+  </ul></aside>
+</section>
+
+<!-- VII · ATTILA -->
+<section id="attila" data-label="Battle II">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/attila.jpg" alt="Raphael's scene of Pope Leo on horseback meeting Attila, with Saints Peter and Paul in the sky"><figcaption>After Raphael, The Meeting of Leo the Great and Attila, c. 1514</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Battle II · 452 AD</div>
+      <h2>Attila the Hun</h2>
+      <ul class="points">
+        <li>Called <b>"the Scourge of God."</b> He had just destroyed the city of Aquileia.</li>
+        <li>Nothing stood between him and Rome. The emperor did nothing.</li>
+        <li>Leo rode north with two Roman officials and met Attila near <b>Mantua</b>.</li>
+      </ul>
+      <div class="callout"><div class="label">The result</div>
+        <p><b>Attila turned his army around.</b> He never reached Rome, and he died the next year.</p></div>
+      <a class="out" href="https://en.wikipedia.org/wiki/The_Meeting_of_Leo_the_Great_and_Attila" target="_blank" rel="noopener">Open Raphael's painting ↗</a>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Leo didn't know how this would end when he left. That's the courage.</li>
+    <li>The meeting was by the Mincio River. The officials were Avienus and Trigetius.</li>
+    <li>Connection: the year before, Attila was beaten in Gaul at Chalons by the Roman general Aetius, one of the two generals Leo had been sent to reconcile years earlier.</li>
+  </ul></aside>
+</section>
+
+<!-- IX · VANDALS -->
+<section id="vandals" class="flip" data-label="Battle III">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/vandals.jpg" alt="Vandal soldiers looting Rome while a bishop stands on the steps"><figcaption>Karl Bryullov, Genseric's Sack of Rome, 1830s</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Battle III · 455 AD</div>
+      <h2>The Vandals</h2>
+      <ul class="points">
+        <li>King Genseric sailed from North Africa. This time, no one could stop him.</li>
+        <li>Leo met him at the gates of Rome.</li>
+        <li>He couldn't stop the looting. But Genseric agreed: <b>no burning, no massacre</b>.</li>
+      </ul>
+      <div class="callout"><div class="label">14 days</div>
+        <p>Rome was looted for two weeks. The city and its people survived.</p>
+        <blockquote>Do what's possible. Save what you can.</blockquote></div>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>You don't always win completely. Leo didn't quit because he couldn't stop everything.</li>
+    <li>Ask: when have you had to accept a partial win?</li>
+  </ul></aside>
+</section>
+
+<!-- X · QUOTE -->
+<section id="dignity" data-label="His words">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/nativity.jpg" alt="The Nativity, with Mary, Joseph, the Christ Child and the Magi"><figcaption>The Nativity</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Leo the shepherd · Christmas sermon</div>
+      <blockquote class="big-quote">"Christian, remember your dignity."</blockquote>
+      <p class="full-quote">Full line: "Christian, remember your dignity, and now that you share in God's own nature, do not return by sin to your former base condition."</p>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>Leo was a preacher at heart. About 96 of his sermons survive.</li>
+    <li>Your worth comes from being made in God's image, not from followers, grades, or what people say about you.</li>
+    <li>This passage is still read by the Church every Christmas.</li>
+  </ul></aside>
+</section>
+
+<!-- XI · LEGACY -->
+<section id="legacy" class="flip" data-label="Legacy">
+  <div class="split">
+    <div class="media"><figure class="pic"><img src="img/leo-altar.jpg" alt="The altar of St. Leo the Great inside St. Peter's Basilica"><figcaption>Altar of St. Leo the Great, St. Peter's Basilica, where his relics rest</figcaption></figure></div>
+    <div class="text">
+      <div class="eyebrow">Legacy</div>
+      <h2>Why he's "the Great"</h2>
+      <div class="stats">
+        <div class="stat"><div class="n">21</div><div class="t">years as pope, 440 – 461</div></div>
+        <div class="stat"><div class="n">96 · 143</div><div class="t">sermons and letters survive</div></div>
+        <div class="stat"><div class="n">1st</div><div class="t">pope buried in St. Peter's Basilica</div></div>
+        <div class="stat"><div class="n">1754</div><div class="t">named a Doctor of the Church</div></div>
+      </div>
+      <p class="lead" style="font-size:clamp(18px,1.5vw,27px)">He made the pope's role as <b>Peter's voice for the whole Church</b> clear for centuries to come.</p>
+    </div>
+  </div>
+  <aside><h4>Say this</h4><ul>
+    <li>A Doctor of the Church is a saint whose teaching the Church holds up as especially important.</li>
+    <li>Gregory I is the other pope everyone calls "the Great." Nicholas I is sometimes called it too.</li>
+  </ul></aside>
+</section>
+
+<nav class="rail" id="rail" aria-label="Sections"></nav>
+<div class="notes" id="notes" hidden></div>
+<div class="tools"><button id="notesBtn" type="button" aria-pressed="false">Notes</button></div>
+
+<script>
+(function(){
+  const secs=[...document.querySelectorAll('section')];
+  const rail=document.getElementById('rail'),notes=document.getElementById('notes'),btn=document.getElementById('notesBtn');
+  const roman=n=>{const m=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];let s='';for(const[v,r]of m){while(n>=v){s+=r;n-=v}}return s};
+  const links=secs.map((s,k)=>{const a=document.createElement('a');a.href='#'+s.id;a.innerHTML='<span>'+roman(k+1)+' · '+s.dataset.label+'</span><i></i>';a.setAttribute('aria-label',s.dataset.label);rail.appendChild(a);return a});
+  let cur=0;
+  function setCur(k){cur=k;links.forEach((a,j)=>a.classList.toggle('on',j===k));const as=secs[k].querySelector('aside');notes.innerHTML=as?as.innerHTML:''}
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){setCur(secs.indexOf(e.target))}})},{threshold:.55});
+  secs.forEach(s=>io.observe(s));
+  setCur(0);
+  function go(k){k=Math.max(0,Math.min(secs.length-1,k));secs[k].scrollIntoView({block:'start'})}
+  addEventListener('keydown',e=>{
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowUp'||e.key==='PageUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){e.preventDefault();go(0)}else if(e.key==='End'){e.preventDefault();go(secs.length-1)}
+    else if(e.key==='n'||e.key==='N'){toggle()}
+  });
+  function toggle(){notes.hidden=!notes.hidden;btn.setAttribute('aria-pressed',String(!notes.hidden))}
+  btn.onclick=toggle;
+  const h=location.hash.slice(1);const t=secs.findIndex(s=>s.id===h);if(t>0)requestAnimationFrame(()=>go(t));
+})();
+</script>
+
+</body>
+</html>
